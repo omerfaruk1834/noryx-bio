@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>noryxsetup | Link in Bio</title>
+<meta name="description" content="noryxsetup — setup ekipmanları, indirim kodları ve sosyal medya hesapları tek yerde.">
+<meta name="theme-color" content="#08080c">
+
+<!-- Open Graph -->
+<meta property="og:title" content="noryxsetup">
+<meta property="og:description" content="Setup ekipmanlarım, indirim kodlarım ve tüm hesaplarım tek sayfada.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#08080c;
+    --bg-elevated:#121218;
+    --card:#15151d;
+    --border:rgba(255,255,255,0.08);
+    --border-strong:rgba(255,255,255,0.16);
+    --text-primary:#f5f5f7;
+    --text-secondary:#9898a3;
+    --text-tertiary:#5f5f6a;
+    --neon-blue:#4f8cff;
+    --neon-blue-soft:#7aa5ff;
+    --neon-purple:#b565f5;
+    --neon-purple-soft:#cf94ff;
+    --radius-lg:22px;
+    --radius-md:16px;
+    --radius-sm:12px;
+    --font-display:'Space Grotesk', system-ui, sans-serif;
+    --font-body:'Inter', system-ui, sans-serif;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--bg);
+    color:var(--text-primary);
+    font-family:var(--font-body);
+    min-height:100vh;
+    overflow-x:hidden;
+    position:relative;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  /* ambient background glow, purely decorative */
+  .bg-ambient{ position:fixed; inset:0; z-index:-1; overflow:hidden; pointer-events:none; }
+  .bg-ambient::before, .bg-ambient::after{
+    content:''; position:absolute; width:420px; height:420px; border-radius:50%;
+    filter:blur(110px); opacity:0.22;
+  }
+  .bg-ambient::before{ background:var(--neon-blue); top:-140px; left:-110px; }
+  .bg-ambient::after{ background:var(--neon-purple); bottom:-140px; right:-110px; }
+
+  .container{
+    max-width:460px;
+    margin:0 auto;
+    padding:52px 20px 40px;
+    position:relative;
+    z-index:1;
+  }
+
+  /* ---------- profile ---------- */
+  .profile{ display:flex; flex-direction:column; align-items:center; text-align:center; animation:fadeUp .7s ease both; }
+
+  .avatar-ring{
+    width:104px; height:104px;
+    border-radius:50%;
+    padding:3px;
+    background:conic-gradient(from 0deg, var(--neon-blue), var(--neon-purple), var(--neon-blue));
+    animation:spin 7s linear infinite;
+    filter:drop-shadow(0 0 22px rgba(130,110,255,0.35));
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+
+  .avatar-inner{
+    width:100%; height:100%; border-radius:50%;
+    background:var(--bg-elevated);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--text-tertiary);
+  }
+
+  .name{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(26px, 7vw, 32px);
+    letter-spacing:-0.02em;
+    margin-top:18px;
+  }
+
+  .bio{
+    color:var(--text-secondary);
+    font-size:14.5px;
+    line-height:1.6;
+    max-width:300px;
+    margin:8px auto 0;
+  }
+
+  /* ---------- link buttons ---------- */
+  .links{
+    margin-top:32px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+
+  .link-btn{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius-md);
+    padding:16px 20px;
+    color:var(--text-primary);
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:15px;
+    text-decoration:none;
+    letter-spacing:0.01em;
+    transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+    animation:fadeUp .7s ease both;
+  }
+  .links a:nth-child(1){ animation-delay:.05s; }
+  .links a:nth-child(2){ animation-delay:.1s; }
+  .links a:nth-child(3){ animation-delay:.15s; }
+  .links a:nth-child(4){ animation-delay:.2s; }
+
+  .link-btn::before{
+    content:'';
+    position:absolute; inset:-1px;
+    border-radius:inherit;
+    padding:1px;
+    background:linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    opacity:0;
+    transition:opacity .25s ease;
+    -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+    pointer-events:none;
+  }
+
+  .link-btn:hover,
+  .link-btn:focus-visible{
+    transform:translateY(-2px);
+    border-color:transparent;
+    box-shadow:
+      0 10px 26px -8px rgba(79,140,255,0.35),
+      0 10px 30px -8px rgba(181,101,245,0.3),
+      0 0 34px -6px rgba(140,110,255,0.4);
+  }
+  .link-btn:hover::before,
+  .link-btn:focus-visible::before{ opacity:1; }
+
+  .link-btn:active{ transform:translateY(0) scale(0.98); }
+
+  /* ---------- section headings (shared) ---------- */
+  .section-title{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(21px, 6vw, 25px);
+    letter-spacing:-0.01em;
+    background:linear-gradient(100deg, var(--text-primary) 30%, var(--neon-blue-soft) 65%, var(--neon-purple-soft) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  .section-sub{
+    color:var(--text-tertiary);
+    font-size:13px;
+    margin-top:4px;
+  }
+
+  /* ---------- gallery: "Setup'tan Kareler" ---------- */
+  .gallery{ margin-top:52px; animation:fadeUp .7s ease both; animation-delay:.25s; }
+
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:10px;
+    margin-top:18px;
+  }
+
+  .ph-box{
+    aspect-ratio:1;
+    border-radius:var(--radius-md);
+    background:linear-gradient(160deg, var(--bg-elevated), var(--card));
+    border:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    overflow:hidden;
+    transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+  }
+
+  .ph-box:hover,
+  .ph-box:focus-visible{
+    transform:scale(1.06);
+    border-color:rgba(140,110,255,0.5);
+    box-shadow:0 0 26px -6px rgba(140,110,255,0.45);
+    z-index:2;
+  }
+
+  .ph-icon{
+    width:26px; height:26px;
+    color:var(--text-tertiary);
+    opacity:0.55;
+  }
+
+  /* ---------- Favori Ekipmanlar ---------- */
+  .favorites{ margin-top:52px; padding-bottom:8px; animation:fadeUp .7s ease both; animation-delay:.3s; }
+
+  .favorites-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:14px;
+    margin-top:18px;
+  }
+
+  .favorite-item{ text-align:center; }
+
+  .favorite-item .ph-box{ border-radius:var(--radius-sm); }
+
+  .fav-name{
+    margin-top:9px;
+    font-size:12.5px;
+    font-weight:500;
+    color:var(--text-secondary);
+  }
+
+  footer{
+    margin-top:56px;
+    text-align:center;
+    font-size:12px;
+    color:var(--text-tertiary);
+    padding-bottom:16px;
+  }
+
+  @keyframes fadeUp{
+    from{ opacity:0; transform:translateY(14px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  a:focus-visible, .ph-box:focus-visible{
+    outline:2px solid var(--neon-blue-soft);
+    outline-offset:3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- reusable image-placeholder icon -->
+<svg style="display:none">
+  <symbol id="icon-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+    <polyline points="21 15 16 10 5 21"></polyline>
+  </symbol>
+</svg>
+
+<div class="bg-ambient"></div>
+
+<main class="container">
+
+  <!-- ============ PROFİL ============ -->
+  <header class="profile">
+    <div class="avatar-ring">
+      <!-- Profil fotoğrafı: bu div'i <img src="fotografiniz.jpg"> ile değiştirin -->
+      <div class="avatar-inner">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </div>
+    </div>
+
+    <h1 class="name">noryxsetup</h1>
+    <p class="bio">Setup önerileri, ekipman incelemeleri ve size özel indirim kodları 🎮💻</p>
+  </header>
+
+  <!-- ============ BUTONLAR ============ -->
+  <nav class="links">
+    <!-- Her butonun href değerini kendi linkinizle değiştirin -->
+    <a class="link-btn" href="#" target="_blank" rel="noopener">💻 Setup Ekipmanlarım</a>
+    <a class="link-btn" href="#" target="_blank" rel="noopener">🔥 İndirim Kodlarım</a>
+    <a class="link-btn" href="#" target="_blank" rel="noopener">🎥 Sosyal Medya Hesaplarım</a>
+    <a class="link-btn" href="#" target="_blank" rel="noopener">📧 İletişim</a>
+  </nav>
+
+  <!-- ============ SETUP'TAN KARELER ============ -->
+  <section class="gallery">
+    <h2 class="section-title">Setup'tan Kareler</h2>
+    <p class="section-sub">Kurulumumdan anlık kareler</p>
+
+    <div class="gallery-grid">
+      <!-- Her kutucuğu <img src="..." alt="..."> ile değiştirebilir, tıklanınca büyük görsele/posta yönlendirebilirsiniz -->
+      <a class="ph-box" href="#" aria-label="Setup fotoğrafı 1"><svg class="ph-icon"><use href="#icon-image"></use></svg></a>
+      <a class="ph-box" href="#" aria-label="Setup fotoğrafı 2"><svg class="ph-icon"><use href="#icon-image"></use></svg></a>
+      <a class="ph-box" href="#" aria-label="Setup fotoğrafı 3"><svg class="ph-icon"><use href="#icon-image"></use></svg></a>
+      <a class="ph-box" href="#" aria-label="Setup fotoğrafı 4"><svg class="ph-icon"><use href="#icon-image"></use></svg></a>
+      <a class="ph-box" href="#" aria-label="Setup fotoğrafı 5"><svg class="ph-icon"><use href="#icon-image"></use></svg></a>
+      <a class="ph-box" href="#" aria-label="Setup fotoğrafı 6"><svg class="ph-icon"><use href="#icon-image"></use></svg></a>
+    </div>
+  </section>
+
+  <!-- ============ FAVORİ EKİPMANLAR ============ -->
+  <section class="favorites">
+    <h2 class="section-title">Favori Ekipmanlar</h2>
+    <p class="section-sub">En çok kullandığım 3 parça</p>
+
+    <div class="favorites-grid">
+      <div class="favorite-item">
+        <a class="ph-box" href="#" aria-label="Ekipman 1"><svg class="ph-icon"><use href="#icon-image"></use></svg></a>
+        <p class="fav-name">Ürün Adı 1</p>
+      </div>
+      <div class="favorite-item">
+        <a class="ph-box" href="#" aria-label="Ekipman 2"><svg class="ph-icon"><use href="#icon-image"></use></svg></a>
+        <p class="fav-name">Ürün Adı 2</p>
+      </div>
+      <div class="favorite-item">
+        <a class="ph-box" href="#" aria-label="Ekipman 3"><svg class="ph-icon"><use href="#icon-image"></use></svg></a>
+        <p class="fav-name">Ürün Adı 3</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>© <span id="year"></span> noryxsetup</footer>
+
+</main>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
