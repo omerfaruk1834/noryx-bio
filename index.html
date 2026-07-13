@@ -22,7 +22,6 @@
     --bg-elevated:#121218;
     --card:#15151d;
     --border:rgba(255,255,255,0.08);
-    --border-strong:rgba(255,255,255,0.16);
     --text-primary:#f5f5f7;
     --text-secondary:#9898a3;
     --text-tertiary:#5f5f6a;
@@ -38,7 +37,6 @@
   }
 
   *{ margin:0; padding:0; box-sizing:border-box; }
-
   html{ scroll-behavior:smooth; }
 
   body{
@@ -87,7 +85,10 @@
     background:var(--bg-elevated);
     display:flex; align-items:center; justify-content:center;
     color:var(--text-tertiary);
+    overflow:hidden;
   }
+
+  .avatar-img{ width:100%; height:100%; object-fit:cover; display:block; }
 
   .name{
     font-family:var(--font-display);
@@ -105,7 +106,7 @@
     margin:8px auto 0;
   }
 
-  /* ---------- link buttons ---------- */
+  /* ---------- nav / link buttons ---------- */
   .links{
     margin-top:32px;
     display:flex;
@@ -151,8 +152,7 @@
     pointer-events:none;
   }
 
-  .link-btn:hover,
-  .link-btn:focus-visible{
+  .link-btn:hover, .link-btn:focus-visible{
     transform:translateY(-2px);
     border-color:transparent;
     box-shadow:
@@ -160,12 +160,12 @@
       0 10px 30px -8px rgba(181,101,245,0.3),
       0 0 34px -6px rgba(140,110,255,0.4);
   }
-  .link-btn:hover::before,
-  .link-btn:focus-visible::before{ opacity:1; }
-
+  .link-btn:hover::before, .link-btn:focus-visible::before{ opacity:1; }
   .link-btn:active{ transform:translateY(0) scale(0.98); }
 
-  /* ---------- section headings (shared) ---------- */
+  /* ---------- shared section heading ---------- */
+  section{ scroll-margin-top:24px; }
+
   .section-title{
     font-family:var(--font-display);
     font-weight:700;
@@ -183,8 +183,111 @@
     margin-top:4px;
   }
 
-  /* ---------- gallery: "Setup'tan Kareler" ---------- */
-  .gallery{ margin-top:52px; animation:fadeUp .7s ease both; animation-delay:.25s; }
+  /* ---------- Setup Ekipmanlarım ---------- */
+  .ekipmanlar{ margin-top:52px; }
+
+  .equip-list{ display:flex; flex-direction:column; gap:10px; margin-top:18px; }
+
+  .equip-item{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius-md);
+    padding:12px;
+    text-decoration:none;
+    color:var(--text-primary);
+    transition:transform .25s ease, border-color .25s ease;
+  }
+  .equip-item:hover{ transform:translateY(-2px); border-color:rgba(140,110,255,0.35); }
+
+  .equip-thumb{
+    width:52px; height:52px;
+    flex:none;
+    border-radius:var(--radius-sm);
+    background:linear-gradient(160deg, var(--bg-elevated), var(--card));
+    border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--text-tertiary);
+  }
+  .equip-thumb svg{ width:20px; height:20px; opacity:0.55; }
+
+  .equip-name{ font-weight:600; font-size:14.5px; }
+  .equip-cat{ font-size:12.5px; color:var(--text-tertiary); margin-top:2px; }
+
+  /* ---------- İndirim Kodlarım ---------- */
+  .indirim{ margin-top:52px; }
+
+  .discount-card{
+    position:relative;
+    margin-top:18px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    padding:22px;
+    overflow:hidden;
+  }
+  .discount-card::before{
+    content:'';
+    position:absolute; inset:-1px;
+    border-radius:inherit;
+    padding:1px;
+    background:linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    opacity:.55;
+    -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+    pointer-events:none;
+  }
+
+  .discount-site{ font-weight:700; font-size:17px; }
+  .discount-desc{ color:var(--text-secondary); font-size:13.5px; margin-top:4px; }
+
+  .visit-btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    margin-top:16px;
+    padding:11px 18px;
+    border-radius:var(--radius-sm);
+    background:linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    color:#fff;
+    font-weight:600;
+    font-size:14px;
+    text-decoration:none;
+    transition:filter .2s ease, transform .2s ease;
+  }
+  .visit-btn:hover{ filter:brightness(1.1); transform:translateY(-1px); }
+
+  .code-row{ margin-top:14px; display:flex; align-items:center; gap:10px; }
+
+  .code-chip{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:16px;
+    letter-spacing:0.1em;
+    background:var(--bg-elevated);
+    border:1px dashed var(--border);
+    border-radius:10px;
+    padding:9px 16px;
+  }
+
+  .copy-btn{
+    background:transparent;
+    border:1px solid var(--border);
+    color:var(--text-secondary);
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:13px;
+    border-radius:10px;
+    padding:9px 14px;
+    cursor:pointer;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .copy-btn:hover{ border-color:var(--neon-blue-soft); color:var(--text-primary); }
+  .copy-btn.copied{ color:var(--neon-blue-soft); border-color:var(--neon-blue-soft); }
+
+  /* ---------- Setup'tan Kareler (gallery) ---------- */
+  .gallery{ margin-top:52px; }
 
   .gallery-grid{
     display:grid;
@@ -205,41 +308,91 @@
     overflow:hidden;
     transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
   }
-
-  .ph-box:hover,
-  .ph-box:focus-visible{
+  .ph-box:hover, .ph-box:focus-visible{
     transform:scale(1.06);
     border-color:rgba(140,110,255,0.5);
     box-shadow:0 0 26px -6px rgba(140,110,255,0.45);
     z-index:2;
   }
 
-  .ph-icon{
-    width:26px; height:26px;
-    color:var(--text-tertiary);
-    opacity:0.55;
-  }
+  .ph-icon{ width:26px; height:26px; color:var(--text-tertiary); opacity:0.55; }
 
-  /* ---------- Favori Ekipmanlar ---------- */
-  .favorites{ margin-top:52px; padding-bottom:8px; animation:fadeUp .7s ease both; animation-delay:.3s; }
+  .gallery-img{ width:100%; height:100%; object-fit:cover; display:block; }
 
-  .favorites-grid{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:14px;
+  /* ---------- Sosyal Medya ---------- */
+  .sosyal{ margin-top:52px; }
+  .sosyal .link-list{ display:flex; flex-direction:column; gap:12px; margin-top:18px; }
+
+  /* ---------- İletişim ---------- */
+  .iletisim{ margin-top:52px; padding-bottom:8px; }
+
+  .contact-card{
     margin-top:18px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    padding:20px;
   }
+  .contact-desc{ color:var(--text-secondary); font-size:13.5px; line-height:1.6; margin-bottom:16px; }
 
-  .favorite-item{ text-align:center; }
+  .contact-form{ display:flex; flex-direction:column; gap:12px; }
 
-  .favorite-item .ph-box{ border-radius:var(--radius-sm); }
+  .form-field{ display:flex; flex-direction:column; gap:6px; }
 
-  .fav-name{
-    margin-top:9px;
+  .form-field label{
     font-size:12.5px;
-    font-weight:500;
+    font-weight:600;
     color:var(--text-secondary);
   }
+
+  .form-field input,
+  .form-field textarea{
+    background:var(--bg-elevated);
+    border:1px solid var(--border);
+    border-radius:var(--radius-sm);
+    padding:12px 14px;
+    color:var(--text-primary);
+    font-family:var(--font-body);
+    font-size:14px;
+    resize:vertical;
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .form-field textarea{ min-height:96px; }
+
+  .form-field input::placeholder,
+  .form-field textarea::placeholder{ color:var(--text-tertiary); }
+
+  .form-field input:focus,
+  .form-field textarea:focus{
+    outline:none;
+    border-color:var(--neon-blue-soft);
+    box-shadow:0 0 0 3px rgba(79,140,255,0.18);
+  }
+
+  .submit-btn{
+    margin-top:4px;
+    border:none;
+    cursor:pointer;
+    padding:13px 18px;
+    border-radius:var(--radius-sm);
+    background:linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    color:#fff;
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:14.5px;
+    transition:filter .2s ease, transform .2s ease, opacity .2s ease;
+  }
+  .submit-btn:hover{ filter:brightness(1.1); transform:translateY(-1px); }
+  .submit-btn:disabled{ opacity:.6; cursor:not-allowed; transform:none; }
+
+  .form-status{
+    font-size:13px;
+    margin-top:2px;
+    display:none;
+  }
+  .form-status.show{ display:block; }
+  .form-status.ok{ color:var(--neon-blue-soft); }
+  .form-status.err{ color:#ff8080; }
 
   footer{
     margin-top:56px;
@@ -254,7 +407,7 @@
     to{ opacity:1; transform:translateY(0); }
   }
 
-  a:focus-visible, .ph-box:focus-visible{
+  a:focus-visible, button:focus-visible, .ph-box:focus-visible{
     outline:2px solid var(--neon-blue-soft);
     outline-offset:3px;
   }
@@ -282,27 +435,65 @@
   <!-- ============ PROFİL ============ -->
   <header class="profile">
     <div class="avatar-ring">
-      <!-- Profil fotoğrafı: bu div'i <img src="fotografiniz.jpg"> ile değiştirin -->
       <div class="avatar-inner">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-          <circle cx="12" cy="7" r="4"></circle>
-        </svg>
+        <img class="avatar-img" src="https://i.pinimg.com/736x/64/85/44/648544e3607daf4bd55022844a2e3245.jpg" alt="noryxsetup profil fotoğrafı">
       </div>
     </div>
-
     <h1 class="name">noryxsetup</h1>
-    <p class="bio">Setup önerileri, ekipman incelemeleri ve size özel indirim kodları 🎮💻</p>
+    <p class="bio">Kendi kişisel link in bio siteme hoşgeldiniz. 🎮💻</p>
   </header>
 
-  <!-- ============ BUTONLAR ============ -->
+  <!-- ============ MENÜ (sayfa içi bölümlere kaydırır) ============ -->
   <nav class="links">
-    <!-- Her butonun href değerini kendi linkinizle değiştirin -->
-    <a class="link-btn" href="#" target="_blank" rel="noopener">💻 Setup Ekipmanlarım</a>
-    <a class="link-btn" href="#" target="_blank" rel="noopener">🔥 İndirim Kodlarım</a>
-    <a class="link-btn" href="#" target="_blank" rel="noopener">🎥 Sosyal Medya Hesaplarım</a>
-    <a class="link-btn" href="#" target="_blank" rel="noopener">📧 İletişim</a>
+    <a class="link-btn" href="#ekipmanlar">💻 Setup Ekipmanlarım</a>
+    <a class="link-btn" href="#indirim">🔥 İndirim Kodlarım</a>
+    <a class="link-btn" href="#sosyal">🎥 Sosyal Medya Hesaplarım</a>
+    <a class="link-btn" href="#iletisim">📧 İletişim</a>
   </nav>
+
+  <!-- ============ SETUP EKİPMANLARIM ============ -->
+  <section class="ekipmanlar" id="ekipmanlar">
+    <h2 class="section-title">Setup Ekipmanlarım</h2>
+    <p class="section-sub">Masamda kullandığım ekipmanlar</p>
+
+    <div class="equip-list">
+      <!-- Her satırı kendi ürününüzle değiştirin: isim, kategori ve isterseniz href ile ürün linki ekleyin -->
+      <a class="equip-item" href="https://www.akakce.com/klavye/en-ucuz-aula-f75-tkl-rgb-mavi-kablosuz-mekanik-oyuncu-si-fiyati,742993212.html" target="_blank" rel="noopener">
+        <div class="equip-thumb"><svg class="ph-icon"><use href="#icon-image"></use></svg></div>
+        <div><div class="equip-name">Aula F75</div><div class="equip-cat">Kategori · Klavye</div></div>
+      </a>
+      <a class="equip-item" href="https://www.gaming.gen.tr/urun/912967/scyrox-v6-8k-hz-pixart-3950-sensor-mavi-kablosuz-simetrik-gaming-mouse-2/?ref=akakce" target="_blank" rel="noopener">
+        <div class="equip-thumb"><svg class="ph-icon"><use href="#icon-image"></use></svg></div>
+        <div><div class="equip-name">Scyrox V6</div><div class="equip-cat">Kategori · Mouse</div></div>
+      </a>
+      <a class="equip-item" href="https://www.akakce.com/monitor/en-ucuz-aoc-cu34g2xp-bk-34-1-ms-wqhd-curved-oyuncu-u-fiyati,573806410.html" target="_blank" rel="noopener">
+        <div class="equip-thumb"><svg class="ph-icon"><use href="#icon-image"></use></svg></div>
+        <div><div class="equip-name">AOC CU34G2XP/BK</div><div class="equip-cat">Kategori · Monitör</div></div>
+      </a>
+      <a class="equip-item" href="https://www.akakce.com/kulaklik/en-ucuz-logi-pro-x-se-7-1-kablolu-kulak-ustu-oyuncu-kulakligi-fiyati,859681349.html" target="_blank" rel="noopener">
+        <div class="equip-thumb"><svg class="ph-icon"><use href="#icon-image"></use></svg></div>
+        <div><div class="equip-name">Logitech G Pro X Se</div><div class="equip-cat">Kategori · Kulaklık</div></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ İNDİRİM KODLARIM ============ -->
+  <section class="indirim" id="indirim">
+    <h2 class="section-title">İndirim Kodlarım</h2>
+    <p class="section-sub">setupia.com.tr için özel kodum</p>
+
+    <div class="discount-card">
+      <div class="discount-site">Setupia</div>
+      <p class="discount-desc">setupia.com.tr üzerinden alışverişlerinizde aşağıdaki kodu kullanabilirsiniz.</p>
+
+      <div class="code-row">
+        <span class="code-chip" id="discountCode">NORYX</span>
+        <button class="copy-btn" id="copyBtn" type="button">Kodu Kopyala</button>
+      </div>
+
+      <a class="visit-btn" href="https://setupia.com.tr/" target="_blank" rel="noopener">Setupia'yı Ziyaret Et →</a>
+    </div>
+  </section>
 
   <!-- ============ SETUP'TAN KARELER ============ -->
   <section class="gallery">
@@ -310,34 +501,56 @@
     <p class="section-sub">Kurulumumdan anlık kareler</p>
 
     <div class="gallery-grid">
-      <!-- Her kutucuğu <img src="..." alt="..."> ile değiştirebilir, tıklanınca büyük görsele/posta yönlendirebilirsiniz -->
-      <a class="ph-box" href="#" aria-label="Setup fotoğrafı 1"><svg class="ph-icon"><use href="#icon-image"></use></svg></a>
-      <a class="ph-box" href="#" aria-label="Setup fotoğrafı 2"><svg class="ph-icon"><use href="#icon-image"></use></svg></a>
-      <a class="ph-box" href="#" aria-label="Setup fotoğrafı 3"><svg class="ph-icon"><use href="#icon-image"></use></svg></a>
-      <a class="ph-box" href="#" aria-label="Setup fotoğrafı 4"><svg class="ph-icon"><use href="#icon-image"></use></svg></a>
-      <a class="ph-box" href="#" aria-label="Setup fotoğrafı 5"><svg class="ph-icon"><use href="#icon-image"></use></svg></a>
-      <a class="ph-box" href="#" aria-label="Setup fotoğrafı 6"><svg class="ph-icon"><use href="#icon-image"></use></svg></a>
+      <!-- Her kutucuğu <img src="..." alt="..."> ile değiştirebilirsiniz -->
+      <a class="ph-box" href="https://i.pinimg.com/736x/e7/1f/82/e71f82d73ed833ce89b6b5fd51787d38.jpg" target="_blank" rel="noopener" aria-label="Setup fotoğrafı 1"><img class="gallery-img" src="https://i.pinimg.com/736x/e7/1f/82/e71f82d73ed833ce89b6b5fd51787d38.jpg" alt="Setup fotoğrafı 1"></a>
+      <a class="ph-box" href="https://i.pinimg.com/736x/70/42/01/704201dd59b683faec1aa1d1213879ed.jpg" target="_blank" rel="noopener" aria-label="Setup fotoğrafı 2"><img class="gallery-img" src="https://i.pinimg.com/736x/70/42/01/704201dd59b683faec1aa1d1213879ed.jpg" alt="Setup fotoğrafı 2"></a>
+      <a class="ph-box" href="https://i.pinimg.com/736x/27/fe/e2/27fee280dcf909dd848ada5d70022d28.jpg" target="_blank" rel="noopener" aria-label="Setup fotoğrafı 3"><img class="gallery-img" src="https://i.pinimg.com/736x/27/fe/e2/27fee280dcf909dd848ada5d70022d28.jpg" alt="Setup fotoğrafı 3"></a>
+      <a class="ph-box" href="https://i.pinimg.com/736x/ea/50/c6/ea50c6934447f149972bf2c8ffacbc32.jpg" target="_blank" rel="noopener" aria-label="Setup fotoğrafı 4"><img class="gallery-img" src="https://i.pinimg.com/736x/ea/50/c6/ea50c6934447f149972bf2c8ffacbc32.jpg" alt="Setup fotoğrafı 4"></a>
+      <a class="ph-box" href="https://i.pinimg.com/736x/5f/9e/ff/5f9eff1f6401efc73dcecfe20c05ef7c.jpg" target="_blank" rel="noopener" aria-label="Setup fotoğrafı 5"><img class="gallery-img" src="https://i.pinimg.com/736x/5f/9e/ff/5f9eff1f6401efc73dcecfe20c05ef7c.jpg" alt="Setup fotoğrafı 5"></a>
+      <a class="ph-box" href="https://i.pinimg.com/736x/c4/3a/25/c43a25d78664a33724b0160f924e1d22.jpg" target="_blank" rel="noopener" aria-label="Setup fotoğrafı 6"><img class="gallery-img" src="https://i.pinimg.com/736x/c4/3a/25/c43a25d78664a33724b0160f924e1d22.jpg" alt="Setup fotoğrafı 6"></a>
     </div>
   </section>
 
-  <!-- ============ FAVORİ EKİPMANLAR ============ -->
-  <section class="favorites">
-    <h2 class="section-title">Favori Ekipmanlar</h2>
-    <p class="section-sub">En çok kullandığım 3 parça</p>
+  <!-- ============ SOSYAL MEDYA HESAPLARIM ============ -->
+  <section class="sosyal" id="sosyal">
+    <h2 class="section-title">Sosyal Medya Hesaplarım</h2>
+    <p class="section-sub">Beni buradan takip edebilirsiniz</p>
 
-    <div class="favorites-grid">
-      <div class="favorite-item">
-        <a class="ph-box" href="#" aria-label="Ekipman 1"><svg class="ph-icon"><use href="#icon-image"></use></svg></a>
-        <p class="fav-name">Ürün Adı 1</p>
-      </div>
-      <div class="favorite-item">
-        <a class="ph-box" href="#" aria-label="Ekipman 2"><svg class="ph-icon"><use href="#icon-image"></use></svg></a>
-        <p class="fav-name">Ürün Adı 2</p>
-      </div>
-      <div class="favorite-item">
-        <a class="ph-box" href="#" aria-label="Ekipman 3"><svg class="ph-icon"><use href="#icon-image"></use></svg></a>
-        <p class="fav-name">Ürün Adı 3</p>
-      </div>
+    <nav class="link-list">
+      <!-- Her linki kendi kullanıcı adınızla/hesap linkinizle değiştirin -->
+      <a class="link-btn" href="https://www.instagram.com/noryxsetup?igsh=d2NhOWd0eWQxMXZ2" target="_blank" rel="noopener"> Instagram</a>
+      <a class="link-btn" href="https://youtube.com/@noryxsetup?si=q4Tho9RCCoJGcR61" target="_blank" rel="noopener"> YouTube</a>
+      <a class="link-btn" href="https://www.tiktok.com/@noryxstp?_r=1&_t=ZS-980eSWAIi9Q" target="_blank" rel="noopener"> Tiktok</a>
+      <a class="link-btn" href="https://www.threads.com/@noryxsetup" target="_blank" rel="noopener"> Threads</a>
+    </nav>
+  </section>
+
+  <!-- ============ İLETİŞİM ============ -->
+  <section class="iletisim" id="iletisim">
+    <h2 class="section-title">İletişim</h2>
+    <p class="section-sub">İş birlikleri ve sorularınız için</p>
+
+    <div class="contact-card">
+      <p class="contact-desc">Aşağıdaki formu doldur, mesajın direkt mailime düşsün.</p>
+
+      <!-- ÖNEMLİ: formspree.io'da ücretsiz hesap açıp aldığın form ID'yi
+           aşağıdaki "YOUR_FORM_ID" yerine yapıştır. Örnek: https://formspree.io/f/abcdwxyz -->
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/mvzeoyqk" method="POST">
+        <div class="form-field">
+          <label for="cf-name">İsim</label>
+          <input type="text" id="cf-name" name="name" placeholder="Adın" required>
+        </div>
+        <div class="form-field">
+          <label for="cf-email">E-posta</label>
+          <input type="email" id="cf-email" name="email" placeholder="sana dönüş yapabilmem için" required>
+        </div>
+        <div class="form-field">
+          <label for="cf-message">Mesaj</label>
+          <textarea id="cf-message" name="message" placeholder="Mesajını yaz..." required></textarea>
+        </div>
+        <button class="submit-btn" type="submit">Gönder</button>
+        <p class="form-status" id="formStatus"></p>
+      </form>
     </div>
   </section>
 
@@ -347,6 +560,53 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  const copyBtn = document.getElementById('copyBtn');
+  copyBtn.addEventListener('click', async () => {
+    const code = document.getElementById('discountCode').textContent.trim();
+    try{ await navigator.clipboard.writeText(code); }catch(e){}
+    const original = copyBtn.textContent;
+    copyBtn.textContent = 'Kopyalandı ✓';
+    copyBtn.classList.add('copied');
+    setTimeout(() => {
+      copyBtn.textContent = original;
+      copyBtn.classList.remove('copied');
+    }, 1600);
+  });
+
+  const contactForm = document.getElementById('contactForm');
+  const formStatus = document.getElementById('formStatus');
+  const submitBtn = contactForm.querySelector('.submit-btn');
+
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Gönderiliyor...';
+    formStatus.className = 'form-status';
+
+    try{
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if(response.ok){
+        formStatus.textContent = 'Mesajın gönderildi, teşekkürler! En kısa sürede dönüş yapacağım.';
+        formStatus.classList.add('show', 'ok');
+        contactForm.reset();
+      } else {
+        formStatus.textContent = 'Bir şeyler ters gitti, lütfen tekrar dene.';
+        formStatus.classList.add('show', 'err');
+      }
+    } catch(err){
+      formStatus.textContent = 'Bağlantı hatası, lütfen tekrar dene.';
+      formStatus.classList.add('show', 'err');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Gönder';
+    }
+  });
 </script>
 
 </body>
