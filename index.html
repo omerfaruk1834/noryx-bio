@@ -202,17 +202,6 @@
   }
   .equip-item:hover{ transform:translateY(-2px); border-color:rgba(140,110,255,0.35); }
 
-  .equip-thumb{
-    width:52px; height:52px;
-    flex:none;
-    border-radius:var(--radius-sm);
-    background:linear-gradient(160deg, var(--bg-elevated), var(--card));
-    border:1px solid var(--border);
-    display:flex; align-items:center; justify-content:center;
-    color:var(--text-tertiary);
-  }
-  .equip-thumb svg{ width:20px; height:20px; opacity:0.55; }
-
   .equip-name{ font-weight:600; font-size:14.5px; }
   .equip-cat{ font-size:12.5px; color:var(--text-tertiary); margin-top:2px; }
 
@@ -334,66 +323,6 @@
     padding:20px;
   }
   .contact-desc{ color:var(--text-secondary); font-size:13.5px; line-height:1.6; margin-bottom:16px; }
-
-  .contact-form{ display:flex; flex-direction:column; gap:12px; }
-
-  .form-field{ display:flex; flex-direction:column; gap:6px; }
-
-  .form-field label{
-    font-size:12.5px;
-    font-weight:600;
-    color:var(--text-secondary);
-  }
-
-  .form-field input,
-  .form-field textarea{
-    background:var(--bg-elevated);
-    border:1px solid var(--border);
-    border-radius:var(--radius-sm);
-    padding:12px 14px;
-    color:var(--text-primary);
-    font-family:var(--font-body);
-    font-size:14px;
-    resize:vertical;
-    transition:border-color .2s ease, box-shadow .2s ease;
-  }
-  .form-field textarea{ min-height:96px; }
-
-  .form-field input::placeholder,
-  .form-field textarea::placeholder{ color:var(--text-tertiary); }
-
-  .form-field input:focus,
-  .form-field textarea:focus{
-    outline:none;
-    border-color:var(--neon-blue-soft);
-    box-shadow:0 0 0 3px rgba(79,140,255,0.18);
-  }
-
-  .submit-btn{
-    margin-top:4px;
-    border:none;
-    cursor:pointer;
-    padding:13px 18px;
-    border-radius:var(--radius-sm);
-    background:linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
-    color:#fff;
-    font-family:var(--font-body);
-    font-weight:600;
-    font-size:14.5px;
-    transition:filter .2s ease, transform .2s ease, opacity .2s ease;
-  }
-  .submit-btn:hover{ filter:brightness(1.1); transform:translateY(-1px); }
-  .submit-btn:disabled{ opacity:.6; cursor:not-allowed; transform:none; }
-
-  .form-status{
-    font-size:13px;
-    margin-top:2px;
-    display:none;
-  }
-  .form-status.show{ display:block; }
-  .form-status.ok{ color:var(--neon-blue-soft); }
-  .form-status.err{ color:#ff8080; }
-
   footer{
     margin-top:56px;
     text-align:center;
@@ -440,7 +369,7 @@
       </div>
     </div>
     <h1 class="name">noryxsetup</h1>
-    <p class="bio">Kendi kişisel link in bio siteme hoşgeldiniz. 🎮💻</p>
+    <p class="bio">Setup önerileri, ekipman incelemeleri ve size özel indirim kodları 🎮💻</p>
   </header>
 
   <!-- ============ MENÜ (sayfa içi bölümlere kaydırır) ============ -->
@@ -459,20 +388,22 @@
     <div class="equip-list">
       <!-- Her satırı kendi ürününüzle değiştirin: isim, kategori ve isterseniz href ile ürün linki ekleyin -->
       <a class="equip-item" href="https://www.akakce.com/klavye/en-ucuz-aula-f75-tkl-rgb-mavi-kablosuz-mekanik-oyuncu-si-fiyati,742993212.html" target="_blank" rel="noopener">
-        <div class="equip-thumb"><svg class="ph-icon"><use href="#icon-image"></use></svg></div>
         <div><div class="equip-name">Aula F75</div><div class="equip-cat">Kategori · Klavye</div></div>
       </a>
       <a class="equip-item" href="https://www.gaming.gen.tr/urun/912967/scyrox-v6-8k-hz-pixart-3950-sensor-mavi-kablosuz-simetrik-gaming-mouse-2/?ref=akakce" target="_blank" rel="noopener">
-        <div class="equip-thumb"><svg class="ph-icon"><use href="#icon-image"></use></svg></div>
         <div><div class="equip-name">Scyrox V6</div><div class="equip-cat">Kategori · Mouse</div></div>
       </a>
       <a class="equip-item" href="https://www.akakce.com/monitor/en-ucuz-aoc-cu34g2xp-bk-34-1-ms-wqhd-curved-oyuncu-u-fiyati,573806410.html" target="_blank" rel="noopener">
-        <div class="equip-thumb"><svg class="ph-icon"><use href="#icon-image"></use></svg></div>
         <div><div class="equip-name">AOC CU34G2XP/BK</div><div class="equip-cat">Kategori · Monitör</div></div>
       </a>
       <a class="equip-item" href="https://www.akakce.com/kulaklik/en-ucuz-logi-pro-x-se-7-1-kablolu-kulak-ustu-oyuncu-kulakligi-fiyati,859681349.html" target="_blank" rel="noopener">
-        <div class="equip-thumb"><svg class="ph-icon"><use href="#icon-image"></use></svg></div>
         <div><div class="equip-name">Logitech G Pro X Se</div><div class="equip-cat">Kategori · Kulaklık</div></div>
+      </a>
+      <a class="equip-item" href="https://www.akakce.com/tv-box/en-ucuz-apple-tv-4k-64-gb-wi-fi-mn873tz-a-fiyati,113704546.html" target="_blank" rel="noopener">
+        <div><div class="equip-name">Apple TV</div><div class="equip-cat">Kategori · TV Box</div></div>
+      </a>
+      <a class="equip-item" href="https://www.vatanbilgisayar.com/sony-playstation-5-slim-digital-surum-oyun-konsolu-154947.html" target="_blank" rel="noopener">
+        <div><div class="equip-name">Playstation 5</div><div class="equip-cat">Kategori · Oyun Konsolu</div></div>
       </a>
     </div>
   </section>
@@ -480,15 +411,27 @@
   <!-- ============ İNDİRİM KODLARIM ============ -->
   <section class="indirim" id="indirim">
     <h2 class="section-title">İndirim Kodlarım</h2>
-    <p class="section-sub">setupia.com.tr için özel kodum</p>
+    <p class="section-sub">Bana destek olmak için indirim kodları</p>
 
     <div class="discount-card">
+      <div class="discount-site">Hawkchair</div>
+      <p class="discount-desc">hawkchair.com üzerinden alışverişlerinizde aşağıdaki kodu kullanabilirsiniz.</p>
+
+      <div class="code-row">
+        <span class="code-chip discount-code" id="discountCode1">NORYX</span>
+        <button class="copy-btn" data-target="discountCode1" type="button">Kodu Kopyala</button>
+      </div>
+
+      <a class="visit-btn" href="https://www.hawkchair.com/" target="_blank" rel="noopener">Hawkchair'i Ziyaret Et →</a>
+    </div>
+
+    <div class="discount-card" style="margin-top:14px;">
       <div class="discount-site">Setupia</div>
       <p class="discount-desc">setupia.com.tr üzerinden alışverişlerinizde aşağıdaki kodu kullanabilirsiniz.</p>
 
       <div class="code-row">
-        <span class="code-chip" id="discountCode">NORYX</span>
-        <button class="copy-btn" id="copyBtn" type="button">Kodu Kopyala</button>
+        <span class="code-chip discount-code" id="discountCode2">NORYX</span>
+        <button class="copy-btn" data-target="discountCode2" type="button">Kodu Kopyala</button>
       </div>
 
       <a class="visit-btn" href="https://setupia.com.tr/" target="_blank" rel="noopener">Setupia'yı Ziyaret Et →</a>
@@ -518,7 +461,7 @@
 
     <nav class="link-list">
       <!-- Her linki kendi kullanıcı adınızla/hesap linkinizle değiştirin -->
-      <a class="link-btn" href="https://www.instagram.com/noryxsetup?igsh=d2NhOWd0eWQxMXZ2" target="_blank" rel="noopener"> Instagram</a>
+     <a class="link-btn" href="https://www.instagram.com/noryxsetup?igsh=d2NhOWd0eWQxMXZ2" target="_blank" rel="noopener"> Instagram</a>
       <a class="link-btn" href="https://youtube.com/@noryxsetup?si=q4Tho9RCCoJGcR61" target="_blank" rel="noopener"> YouTube</a>
       <a class="link-btn" href="https://www.tiktok.com/@noryxstp?_r=1&_t=ZS-980eSWAIi9Q" target="_blank" rel="noopener"> Tiktok</a>
       <a class="link-btn" href="https://www.threads.com/@noryxsetup" target="_blank" rel="noopener"> Threads</a>
@@ -531,26 +474,9 @@
     <p class="section-sub">İş birlikleri ve sorularınız için</p>
 
     <div class="contact-card">
-      <p class="contact-desc">Aşağıdaki formu doldur, mesajın direkt mailime düşsün.</p>
-
-      <!-- ÖNEMLİ: formspree.io'da ücretsiz hesap açıp aldığın form ID'yi
-           aşağıdaki "YOUR_FORM_ID" yerine yapıştır. Örnek: https://formspree.io/f/abcdwxyz -->
-      <form class="contact-form" id="contactForm" action="https://formspree.io/f/mvzeoyqk" method="POST">
-        <div class="form-field">
-          <label for="cf-name">İsim</label>
-          <input type="text" id="cf-name" name="name" placeholder="Adın" required>
-        </div>
-        <div class="form-field">
-          <label for="cf-email">E-posta</label>
-          <input type="email" id="cf-email" name="email" placeholder="sana dönüş yapabilmem için" required>
-        </div>
-        <div class="form-field">
-          <label for="cf-message">Mesaj</label>
-          <textarea id="cf-message" name="message" placeholder="Mesajını yaz..." required></textarea>
-        </div>
-        <button class="submit-btn" type="submit">Gönder</button>
-        <p class="form-status" id="formStatus"></p>
-      </form>
+      <p class="contact-desc">Aşağıdaki butona basarak doğrudan mail gönderebilirsiniz..</p>
+      <!-- mailto adresini kendi e-postanızla değiştirin -->
+      <a class="link-btn" href="mailto:noryxsetup@gmail.com">📧 E-posta Gönder</a>
     </div>
   </section>
 
@@ -561,52 +487,21 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  const copyBtn = document.getElementById('copyBtn');
-  copyBtn.addEventListener('click', async () => {
-    const code = document.getElementById('discountCode').textContent.trim();
-    try{ await navigator.clipboard.writeText(code); }catch(e){}
-    const original = copyBtn.textContent;
-    copyBtn.textContent = 'Kopyalandı ✓';
-    copyBtn.classList.add('copied');
-    setTimeout(() => {
-      copyBtn.textContent = original;
-      copyBtn.classList.remove('copied');
-    }, 1600);
+  document.querySelectorAll('.copy-btn').forEach((copyBtn) => {
+    copyBtn.addEventListener('click', async () => {
+      const targetId = copyBtn.getAttribute('data-target');
+      const code = document.getElementById(targetId).textContent.trim();
+      try{ await navigator.clipboard.writeText(code); }catch(e){}
+      const original = copyBtn.textContent;
+      copyBtn.textContent = 'Kopyalandı ✓';
+      copyBtn.classList.add('copied');
+      setTimeout(() => {
+        copyBtn.textContent = original;
+        copyBtn.classList.remove('copied');
+      }, 1600);
+    });
   });
 
-  const contactForm = document.getElementById('contactForm');
-  const formStatus = document.getElementById('formStatus');
-  const submitBtn = contactForm.querySelector('.submit-btn');
-
-  contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Gönderiliyor...';
-    formStatus.className = 'form-status';
-
-    try{
-      const response = await fetch(contactForm.action, {
-        method: 'POST',
-        body: new FormData(contactForm),
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if(response.ok){
-        formStatus.textContent = 'Mesajın gönderildi, teşekkürler! En kısa sürede dönüş yapacağım.';
-        formStatus.classList.add('show', 'ok');
-        contactForm.reset();
-      } else {
-        formStatus.textContent = 'Bir şeyler ters gitti, lütfen tekrar dene.';
-        formStatus.classList.add('show', 'err');
-      }
-    } catch(err){
-      formStatus.textContent = 'Bağlantı hatası, lütfen tekrar dene.';
-      formStatus.classList.add('show', 'err');
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Gönder';
-    }
-  });
 </script>
 
 </body>
